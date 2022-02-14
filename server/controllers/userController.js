@@ -13,18 +13,18 @@ const register = async(req,res)=>{
             return res.status(400).json({ errors: errors.array() });
           }
 
-        const {firstName,lastName , email, password , adresse, pays, city, postalCode} = req.body;
+        const {firstName,lastName , email, password , address, pays, city, postalCode} = req.body;
 
          const existUser = await User.findOne({email})
 
-         if(existUser) return res.status(400).json({msg : 'this email is already exist'})
+         if(existUser) return res.status(400).json({msg : 'you have already registred'})
 
          if(password.length < 6) return res.status(400).json({msg : ' password is at least 6 caracters long '})
 
          const hadshedPassword= await bcrypt.hash(password, 10)
-         const newUser = await User.create({firstName,lastName, email, password:hadshedPassword,adresse,pays,city,postalCode})
-        res.json(newUser)
-        //  res.status(201).json({msg : 'user created'});
+         const newUser = await User.create({firstName,lastName, email, password:hadshedPassword,address,pays,city,postalCode})
+        // res.json(newUser)
+         res.status(201).json({msg : 'user created'});
     } catch (error) {
         console.log(error)
         res.status(500).json({msg : `something went wrong`})
@@ -93,14 +93,14 @@ const getUserById = async(req,res)=>{
 // @access  Public
 const updateUserById = async(req,res)=>{
    
-        const {firstName,lastName , email, password , adresse, pays, city, postalCode} = req.body;
+        const {firstName,lastName , email, password , address, pays, city, postalCode} = req.body;
          const user = await User.findById(req.params.id).select('-password')
          if(user) {
          user.firstName= firstName
          user.lastName=lastName
          user.email=email || user.email
          user.password=password || user.password
-         user.adresse=adresse || user.adresse
+         user.address=address || user.address
          user.pays=pays || user.pays
          user.city=city || user.city
          user.postalCode=postalCode || user.postalCode
@@ -125,4 +125,17 @@ const deleteUser = async (req,res)=> {
         res.status(404).json({msg : `something went wrong`})
     }
 }
-module.exports= {register,login,loadUserInfo,getAllUsers,getUserById,updateUserById,deleteUser}
+
+//@desc load user profile picture
+//@route POST /api/user/profilePic
+//@access private, owner
+const updateProfilePicture =  async(req,res) => {
+    try {
+        console.log(req.file)
+        res.json({msg :'hi'})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({msg : `something went wrong`})
+    }
+}
+module.exports= {register,login,loadUserInfo,getAllUsers,getUserById,updateUserById,deleteUser,updateProfilePicture}
