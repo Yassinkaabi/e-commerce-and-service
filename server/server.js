@@ -23,9 +23,9 @@ app.use(express.static(path.join(__dirname, '../', 'client','build')))
 app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'../','client','build','index.html'))
 });
-app.listen(process.env.Port,(err) => 
+app.listen(process.env.PORT,(err) => 
     err? 
     console.log(err) 
-    :console.log(`server is running on localhost ${process.env.Port}`)
+    :console.log(`server is running on localhost ${process.env.PORT}`)
 
 )
