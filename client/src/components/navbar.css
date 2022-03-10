@@ -8,6 +8,13 @@
     width: 100%;
     position: relative;
 }
+.firstword{
+    color: white;
+}
+.secondword{
+    color: #fb5233; 
+    font-size: 19px;
+}
 nav{
     display: flex;
     position: sticky;
@@ -16,18 +23,17 @@ nav{
     justify-content: space-between;
     align-items: center;
     background-color: #282c34;
-    height: 40px;
+    height: 17px;
     }
-    nav img{
+    .Link-style{
+        text-decoration: none;
+    }
+    /* nav img{
         width: 150px;
-    }
+    } */
     .nav-links{
         flex: 1;
         text-align: right;
-        text-decoration: none;
-    }
-    .nav-links{
-        text-decoration: none;
     }
     .nav-links ul li {
         display: inline-block;
@@ -38,7 +44,7 @@ nav{
     .nav-links ul li p {
         color: rgb(255, 244, 244);
         text-decoration: none;
-        font-size: 18px ;
+        font-size: 16px ;
         font-weight: bold;
     }
     .nav-links ul li ::after{
