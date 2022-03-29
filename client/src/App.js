@@ -25,6 +25,7 @@ import Order from './pages/order/Order';
 import Checkout from './pages/order/Checkout';
 import OrderSuccess from './pages/order/OrderSuccess';
 import OrderHistory from './pages/order/OrderHistory';
+import OrderScreen from './pages/order/OrderScreen';
 
 function App() {
   return (
@@ -60,6 +61,8 @@ function App() {
 
         <Route path='/Checkout' element={<Checkout/>}/>
         <Route path='/Order' element={<Order/>}/>
+        <Route path='/OrderScreen' element={<OrderScreen/>}/>
+
         {/* <Route path="/orders/history" >
 					{<OrderHistory/>}
 				</Route>

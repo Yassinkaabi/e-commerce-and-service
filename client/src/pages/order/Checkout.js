@@ -1,7 +1,11 @@
+import { Form, Button, Col, Container } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useRef, useEffect } from 'react';
+import axios from 'axios';
+import { useState, useRef, useEffect } from 'react';
 import Login from '../isAuth/Login';
+import { orderActions, order } from '../../slice/OrderSlice';
 
 const Checkout = () => {
 
@@ -112,7 +116,7 @@ const Checkout = () => {
 			) : (
 				<div>
 					<div style={{ width: '40%', marginLeft: '30%', marginTop: '5%' }}>
-						<h4 onClick={checkoutHandler}>Please Sign In To Proceed!</h4>
+						<h4 onClick={checkoutHandler}  >Please Sign In To Proceed!</h4>
 					</div>
 					<div>
 						

@@ -21,7 +21,7 @@ const Techniciens = () => {
   return (
     <div className="table" >
         <h2 style={{margin:'40px 0 0 0', textAlign:'center'}}>List of Technicien</h2>
-        <table style={{width: '90%', margin:'6rem 0 22.5rem 60px',border:'10px',}}>
+        <table style={{width: '90%', margin:'50px 0px', margin:'6rem 0 22.5rem 60px',border:'10px',}}>
  				<thead style={{backgroundColor:'rgb(40 44 52 / 82%)',color:'white'}}>
  						<tr>
  							<th>ID</th>

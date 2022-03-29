@@ -8,11 +8,11 @@ import {
   getTotals,
   removeFromCart,
 } from "../../slice/cartSlice";
-
 import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const {isAuth,role} = useSelector((state)=>state.user)
   const dispatch = useDispatch();
   const navigate = useNavigate()
   useEffect(() => {
@@ -102,8 +102,8 @@ const Cart = () => {
                 <span>Subtotal</span>
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
-              <p>Taxes and shipping calculated at checkout</p>
-              <button
+                <br/>
+              <button  
               onClick={() => navigate('/Checkout')}
               >Check out</button>
               <div className="continue-shopping">

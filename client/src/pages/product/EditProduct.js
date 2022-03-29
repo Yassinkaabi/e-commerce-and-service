@@ -43,8 +43,7 @@ const editProduct = (data) => {
   {/* <input type='number'  name='Tel'  placeholder='Tel' onChange={handleChange}/> */}
 
   <br/><br/>
-  <button className='btn-edit'  onClick={()=>dispatch(UpdateProduct(productInfo))}>Edit</button>
-
+  <button to='/Product' className='btn-edit'  onClick={()=>dispatch(UpdateProduct(productInfo)) && navigate('/Product')}>Edit</button>
   </div>;
 };
 export default EditProduct;

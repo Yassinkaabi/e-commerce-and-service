@@ -25,7 +25,7 @@ const EditUser = () => {
   
   return <div className='login-page'>
       <h1>Edit</h1><br/>
-  <img src={profilePic} width='200px'/><br/><br/>
+  <img className='profile-image' src={profilePic} width='200px'/><br/><br/>
   {/* <input type='file' onChange={(e)=>setFile(e.target.files[0])}/> */}
   {/* <button onClick={handleSubmit}>update file</button> */}
   {/* <label>Full Name :</label> */}

@@ -1,4 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice,createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios'
+
+//register order action 
+export const createOrder = createAsyncThunk ('order/createOrder',async(info,{rejectWithValue,dispatch})=>{
+    console.log(info)
+    try {
+
+      const {data} = await axios.post('/api/order/register',{
+        headers:{
+            token: localStorage.getItem('token')
+        }
+        },)
+        // /* data.role==='admin'*/ info.navigate('/Product') 
+        // return dispatch(getProduct())
+        return data ;
+    } catch (errors) {
+        return rejectWithValue(errors.response.data.msg)
+    } 
+})
+
+//get order action
+export const getOrder = createAsyncThunk ('order/getOrder',async(info,{rejectWithValue})=>{
+    try {
+      const {data} = await axios.get('/api/order',{
+        headers:{
+            token: localStorage.getItem('token')
+        }
+        },)
+        return data ;
+    } catch (errors) {
+        return rejectWithValue(errors.response.data.msg)
+    }
+})
 
 const orderSlice = createSlice({
 	name: 'order',

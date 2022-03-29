@@ -27,7 +27,7 @@ const Product = ({name,description,price,image,_id}) => {
   
     const handleAddToCart = (product) => {
       dispatch(addToCart(product));
-      navigate("/Cart");
+      // navigate("/Cart");
     };
 
     const handleEditCart = (product) => {
@@ -42,11 +42,11 @@ const Product = ({name,description,price,image,_id}) => {
   return (
 
 <div className="home-container">
+<img className='img-prod' src='/alarme.jpg' alt='caroussel' />
 
 {isAuth && role==='admin' && <Link to='/CreateProduct' > <button className='btn'>Create Product</button> </Link>} 
 
   <>
-  <img className='img-prod' src='/alarme.jpg' alt='caroussel' style={{padding:'20px 0 20px 96px'}}/>
     <h2>New Arrivals</h2>
     <Search/>
     <div className="products">
@@ -54,7 +54,7 @@ const Product = ({name,description,price,image,_id}) => {
     {errors && <p>{errors}</p>}
       {productslist &&
         productslist?.map((product) => (
-          <div key={product._id} className="product">
+          <div key={product._id} className="product-card">
             <div style={{display:'flex',justifyContent:'space-between'}}>
             <h3>{product.name}</h3>
             {isAuth && role==='admin'  &&<i className="fa-solid fa-trash-can" style={{color:'red',cursor:'pointer'}}

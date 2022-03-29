@@ -7,7 +7,7 @@ import store from './store'
 import {Provider} from 'react-redux' 
 import {BrowserRouter} from 'react-router-dom'
 import axios from 'axios'
-axios.defaults.baseURL = 'https://security-shop.herokuapp.com'
+axios.defaults.baseURL = 'http://localhost:5000'
 ReactDOM.render(
   <BrowserRouter>
   <Provider store={store}>

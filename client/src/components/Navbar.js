@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import {React,useState} from 'react';
+import {Link,Route} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../slice/userSlice';
 import "./navbar.css"
@@ -8,35 +8,45 @@ const Navbar = () => {
   const {isAuth,role} = useSelector ((state)=>state.user);
   const dispatch = useDispatch()
   const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const [isMenu, setIsMenu] = useState (false)
 
   return (<div className="header" >
       <nav>
-      <Link className='Link-style' to='/'><h1><span className='firstword'>Security</span><span className='secondword'>shop</span> </h1> </Link>
-            <div className="nav-links" id="navlink">
-            <ul>
-              <li><Link className='Link-style' to='/' ><p><i className="fa-solid fa-house-chimney"></i>Home</p></Link></li>             
-              <li><Link className='Link-style' to='/Product'><p>Product</p></Link> </li>
-              <li><Link className='Link-style' to='/Techniciens'><p>Techniciens</p></Link> </li>
-              {isAuth && role==='admin' ?  <li><Link className='Link-style' to='/Dashboard' ><p>Dashboard</p></Link></li>
-              :isAuth && role==='user'? <li><Link className='Link-style' to='/Profile' ><p>Profile</p></Link></li>
+      <Link className='Link-style' to='/'><h1 className='logo'><span className='firstword'>Security</span><span className='secondword'>shop</span> </h1> </Link>
+      <ul  className={isMenu ? "nav-links-mobile" : "nav-links"}
+        onClick= {()=> setIsMenu (false)}
+              >
+              <li><Link className='Link-style' id='home' to='/' ><p>Home</p></Link></li>             
+              <li><Link className='Link-style' id='product' to='/Product'><p>Product</p></Link> </li>
+              <li><Link className='Link-style' id='technicien' to='/Techniciens'><p>Techniciens</p></Link> </li>
+              {isAuth && role==='admin' ?  <li><Link className='Link-style' id='dashboard' to='/Dashboard' ><p>Dashboard</p></Link></li>
+              :isAuth && role==='user'? <li><Link className='Link-style' id='profile' to='/Profile' ><p>Profile</p></Link></li>
               :isAuth && role==='technicien'?<li><Link className='Link-style' to='/Technicien' ><p>Profile</p></Link></li> 
               // :<> <li><Link to='/Register' ><p>Register</p></Link></li>
-              :<li><Link className='Link-style' to='/Login' ><p>Login ✥ Register</p></Link></li>}
+              :<li><Link className='Link-style' to='/Login' id='login'><p>Login ✥ Register</p></Link></li>}
               {/* <li><Link to='Cart'>Cart</Link> </li> */}
-              
-              <li>{isAuth && <button onClick={()=>dispatch(logout())}><p>Logout</p></button>}</li>
-            </ul>
-            </div> 
+              <li>{isAuth &&<p className='btn-logout' onClick={()=>dispatch(logout())}>Logout</p>}</li>
             <Link className='Link-cart' to="/cart" >
-        <div className="nav-bag">
+        <li className="nav-bag">
         <i class="fa-solid fa-cart-arrow-down"></i>
-          <span className="bag-quantity">
+          <span>
             <span>{cartTotalQuantity}</span>
           </span>
-        </div>
+        </li>
       </Link>
-      </nav>
+            </ul>
+            
 
+              <button className='mobile-menu-icon'
+        onClick={() => setIsMenu(!isMenu)}
+        >
+      {isMenu? (
+      <i class="fa-solid fa-xmark"></i>
+      )  : (
+      <i class="fa-solid fa-bars"></i>
+      )}
+      </button>
+      </nav>
   </div>);
 };
 

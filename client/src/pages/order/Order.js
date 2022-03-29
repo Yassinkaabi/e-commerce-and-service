@@ -1,5 +1,6 @@
+import { Col, Row, Container, ListGroup, Card, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { orderActions } from '../../slice/OrderSlice';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -58,18 +59,15 @@ const Order = () => {
 		return (
 			<div
 				key={item._id}
-				style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', paddingBottom: '20px' }}
-			>
-				<div>
-					<img style={{ width: '30%', height: '100%' }} src={item.image} />
-				</div>
-				<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
-					<div>{item.name}</div>
-					<div style={{ marginLeft: '60px' }}>${item.price}</div>
-				</div>
-				<div>
-					<div style={{ marginLeft: '60px' }}>{item.quantity}</div>
-				</div>
+				style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
+				<table style={{border:'1px solid '}}>
+					<tr>
+					<td><img style={{ width:'30%' }} src={item.image} /></td>
+					<td style={{ paddingRight: '15%' }}>{item.name}</td>
+					<td style={{ marginLeft: '10px' }}>{item.price}Dt</td>
+					<td style={{ marginLeft: '60px' }}>{item.quantity}</td>
+					</tr>
+				</table>
 			</div>
 		);
 	});
@@ -82,35 +80,36 @@ console.log()
 				<>
 					{state ? (
 						<>
-									<div style={{ width: '45rem', marginTop: '20px' ,marginLeft:'25%' ,marginTop:'6rem' }}>
-										<div style={{backgroundColor:'whitesmoke',fontSize:'25px', color:'#53488d',borderBlockStyle:'solid',borderBlockColor:'ActiveBorder' }}>
-											<h2 style={{color :'black',marginBottom:'10px'}}>Shipping Details</h2>
+									<div style={{ width: '45rem' ,marginLeft:'25%' ,marginTop:'3rem' }}>
+										<form>
+										<div style={{marginBottom:'20px',border:'2px solid ',fontSize:'25px', color:'#53488d'}}>
+											<h4 style={{color :'#030303',marginBottom:'10px',margin:'5px 0 5px 40%'}}>Shipping Details</h4>
 											<div>
-												<h6 style={{color:'brown', marginLeft:'1rem' }}>
+												<h6 style={{color:'#030303', marginLeft:'1rem' }}>
 													Address - <span>{address}</span>
 												</h6>
-												<h6 style={{color:'brown', marginLeft:'1rem' }}>
+												<h6 style={{color:'#030303', marginLeft:'1rem' }}>
 													Country - <span>{country}</span>
 												</h6>
-												<h6 style={{color:'brown', marginLeft:'1rem' }}>
+												<h6 style={{color:'#030303', marginLeft:'1rem' }}>
 													City - <span>{city}</span>
 												</h6>
-												<h6 style={{color:'brown', marginLeft:'1rem' }}>
+												<h6 style={{color:'#030303', marginLeft:'1rem' }}>
 													Postal Code - <span>{postalCode}</span>
 												</h6>
 											</div>
 										</div>
-
-									<div style={{ width: '45rem', backgroundColor:'whitesmoke',color:'#53488d',borderBlockStyle:'solid',borderBlockColor:'ActiveBorder', }}>											
-											<h2 style={{fontSize:'30px' ,marginBottom:'10px',color:'black'}}>Order Summary</h2>
+										</form>
+									<div style={{marginBottom:'20px',border:'2px solid',fontSize:'25px', color:'#53488d' }}>											
+											<h4 style={{marginBottom:'10px',color:'#030303',margin:'5px 0 5px 40%'}}>Order Summary</h4>
 											<div>
-												<p style={{ fontWeight: 'bold',color:'brown',marginLeft:'1rem' }}>
+												<h6 style={{color:'#030303',marginLeft:'1rem' }}>
 													Total Items - {JSON.parse(localStorage.getItem('cartItems')).length}
-												</p>
-												<p style={{ fontWeight: 'bold',color:'brown',marginLeft:'1rem' }}>
+												</h6>
+												<h6 style={{color:'#030303',marginLeft:'1rem' }}>
 													Total Price - $
 													{JSON.parse(localStorage.getItem('cartItems')).reduce((acc,curr)=>acc+(curr.price*curr.cartQuantity),0)}
-												</p>
+												</h6>
 											</div>
 											<div class="form-check">
 											{checkout ? (
@@ -130,13 +129,13 @@ console.log()
 									</div>
 									</div>
 
-								<div style={{ marginLeft: '20px', backgroundColor:'whitesmoke',margin:'0 0 9rem 0', color:'#53488d',borderBlockStyle:'solid',borderBlockColor:'ActiveBorder' }}>
-									<div style={{ width: '45rem', marginTop: '20px', fontWeight: 'bold' }}>
-										<div>
-											<h3 style={{color:'black'}}>Order Items - </h3>
+								<div style={{ fontSize:'15px', color:'#53488d',borderBlockStyle:'solid',borderBlockColor:'ActiveBorder',marginBottom:'25px'  }}>
+									<div style={{ width: '45rem', marginTop: '20px' }}>
+									
+											<h4 style={{color:'black',fontSize:'25px',margin:'5px 0 5px 40%'}}>Order Items  </h4>
 
 											<h4 style={{color:'black'}}>{orderItems}</h4>
-										</div>
+										
 									</div>
 								</div>
 							</div>

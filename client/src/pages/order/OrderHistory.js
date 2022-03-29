@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
+import { Card, Button, Row, Accordion, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
 const SuccessfulOrders = () => {
@@ -10,8 +10,8 @@ const SuccessfulOrders = () => {
 		const fetch = async () => {
 			try {
 				const { data } = await axios.get('api/order/', {
-					headers: {
-						Authorization: `Bearer ${JSON.parse(localStorage.getItem('authState')).token}`,
+					headers:{
+						token: localStorage.getItem('token')
 					},
 				});
 				console.log(data);
@@ -102,7 +102,7 @@ const SuccessfulOrders = () => {
 				<>
 					<div style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}></div>
 
-					<div
+					<Row
 						style={{
 							maxWidth: '100%',
 							justifyContent: 'space-between',
@@ -111,7 +111,7 @@ const SuccessfulOrders = () => {
 						}}
 					>
 						{paidOrders}
-					</div>
+					</Row>
 				</>
 			)}
 		</>
