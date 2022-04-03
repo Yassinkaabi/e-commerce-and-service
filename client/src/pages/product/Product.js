@@ -60,8 +60,7 @@ const Product = ({name,description,price,image,_id}) => {
             {isAuth && role==='admin'  &&<i className="fa-solid fa-trash-can" style={{color:'red',cursor:'pointer'}}
              onClick={()=>dispatch(deleteProduct(product._id))}></i>} 
             </div>
-
-            <img src={product.image} alt={product.name} style={{width:'150px', height:'100px'}} />  
+            <img className='Product-card-img ' src={product.image} alt={product.name} style={{width:'150px', height:'100px'}} />
             <div className="details">
               <span>{product.description}</span>
               <span className="price">${product.price}</span>

@@ -42,12 +42,41 @@ ul, ol {
   border-color: rgb(47, 110, 245);
   background-color: rgb(47, 110, 245);
 }
-@media (max-width: 701px) {
+@media (max-width: 731px) {
   .nav-links ul li p{
       font-size: 10px;
   }
-  .searchModule input{
-      width: 70%;
+  .searchModule {
+    width: 300px;
+    padding-left: 0.5em;
+    padding-top: 0.7em;
 
   }
+  .searchModule input{
+      width: 70%;
+  }
+}
+@media (max-width: 458px) {
+  .searchModule input{
+      width: 55%;
+      padding: 10px;
+      font-size: 1rem;
+      margin-left:35px ;
+  }
+  .searchModule {
+    width: 300px;
+    padding-left: 0.5em;
+    padding-top: 0.7em;
+  }
+}
+@media (max-width: 290px) {
+  .searchModule input{
+    width: 60%;
+    margin-left:20px ;
+}
+.searchModule {
+  width: 220px;
+
+
+}
 }

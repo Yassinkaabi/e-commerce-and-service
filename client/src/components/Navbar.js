@@ -17,7 +17,7 @@ const Navbar = () => {
         onClick= {()=> setIsMenu (false)}
               >
               <li><Link className='Link-style' id='home' to='/' ><p>Home</p></Link></li>             
-              <li><Link className='Link-style' id='product' to='/Product'><p>Product</p></Link> </li>
+              <li><Link className='Link-style' id='product' to='/Product'><p>Products</p></Link> </li>
               <li><Link className='Link-style' id='technicien' to='/Techniciens'><p>Techniciens</p></Link> </li>
               {isAuth && role==='admin' ?  <li><Link className='Link-style' id='dashboard' to='/Dashboard' ><p>Dashboard</p></Link></li>
               :isAuth && role==='user'? <li><Link className='Link-style' id='profile' to='/Profile' ><p>Profile</p></Link></li>
